@@ -10,4 +10,3 @@
 * React
 * Webpack
 * обмен данными с сервером (работа с API)
-## Проект на [GitHub Pages](https://methoni.github.io/mesto/)
