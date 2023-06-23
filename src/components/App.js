@@ -1,18 +1,20 @@
-import React from "react";
-import Header from "./Header.js";
-import Main from "./Main.js";
-import Footer from "./Footer.js";
-import PopupWithForm from "./PopupWithForm.js";
-import ImagePopup from "./ImagePopup.js";
+import React from 'react';
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js';
+import PopupWithForm from './PopupWithForm.js';
+import ImagePopup from './ImagePopup.js';
 
 function App() {
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -24,21 +26,17 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  const [selectedCard, setSelectedCard] = React.useState({});
-
-  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    setImagePopupOpen(true);
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setImagePopupOpen(false);
-    setSelectedCard({});
+    setSelectedCard(null);
   }
 
   return (
@@ -57,7 +55,8 @@ function App() {
         title="Редактировать профиль"
         text="Сохранить"
         isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+      >
         <div className="popup__block">
           <input
             type="text"
@@ -91,7 +90,8 @@ function App() {
         title="Обновить аватар"
         text="Сохранить"
         isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+      >
         <div className="popup__block">
           <input
             type="url"
@@ -105,14 +105,19 @@ function App() {
         </div>
       </PopupWithForm>
 
-      <PopupWithForm name="confirm" title="Вы уверены?" text="Да"></PopupWithForm>
+      <PopupWithForm
+        name="confirm"
+        title="Вы уверены?"
+        text="Да"
+      ></PopupWithForm>
 
       <PopupWithForm
         name="place"
         title="Новое место"
         text="Создать"
         isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+      >
         <div className="popup__block">
           <input
             type="text"
@@ -139,7 +144,7 @@ function App() {
         </div>
       </PopupWithForm>
 
-      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
