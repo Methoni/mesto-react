@@ -25,7 +25,7 @@ class Api {
   // добавление карточки на сервер
   addNewCard(cardData) {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: cardData.name,
@@ -38,7 +38,7 @@ class Api {
   // удаление карточки с сервера
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: this._headers,
     }).then((res) => this._getResponseData(res));
   }
@@ -46,7 +46,7 @@ class Api {
   // добавление лайка
   addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         authorization: this._authorization,
       },
@@ -56,11 +56,19 @@ class Api {
   // удаление лайка
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: this._authorization,
       },
     }).then((res) => this._getResponseData(res));
+  }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.deleteLike(cardId);
+    } else {
+      return this.addLike(cardId);
+    }
   }
 
   // получение своих данных пользователя с сервера
@@ -75,7 +83,7 @@ class Api {
   // внесение изменений в свои данные пользователя на сервере
   editUserInfo(profileData) {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: profileData.name,
@@ -87,7 +95,7 @@ class Api {
   // изменение своего аватара на сервере
   editAvatar(profileData) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         avatar: profileData.avatar,
@@ -103,9 +111,9 @@ class Api {
 
 // создание экземпляра класса Api
 export const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-66",
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
   headers: {
-    authorization: "b76f62bc-fc94-47a0-8fcd-24ebc70a3fc1",
-    "Content-Type": "application/json",
+    authorization: 'b76f62bc-fc94-47a0-8fcd-24ebc70a3fc1',
+    'Content-Type': 'application/json',
   },
 });
