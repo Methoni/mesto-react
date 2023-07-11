@@ -22,7 +22,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   React.useEffect(() => {
     setName(currentUser.name ?? '');
     setDescription(currentUser.about ?? '');
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(event) {
     // Запрещаем браузеру переходить по адресу формы

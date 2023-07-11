@@ -28,20 +28,24 @@ function Main({
             className="profile__avatar"
           />
         </button>
-        <div className="profile__info">
-          <h1 className="profile__name">{currentUser.name}</h1>
+        <div className="profile__line-wrap">
+          <div className="profile__info">
+            <div className="profile__user-wrap">
+              <h1 className="profile__name">{currentUser.name}</h1>
+              <button
+                type="button"
+                className="profile__edit"
+                onClick={onEditProfile}
+              ></button>
+            </div>
+            <p className="profile__job">{currentUser.about}</p>
+          </div>
           <button
             type="button"
-            className="profile__edit"
-            onClick={onEditProfile}
+            className="profile__add"
+            onClick={onAddPlace}
           ></button>
-          <p className="profile__job">{currentUser.about}</p>
         </div>
-        <button
-          type="button"
-          className="profile__add"
-          onClick={onAddPlace}
-        ></button>
       </section>
 
       <section className="places" aria-label="Фото">

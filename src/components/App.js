@@ -17,7 +17,7 @@ function App() {
     api
       .getInitialCards()
       .then((cardsData) => {
-        setCards(cardsData.reverse());
+        setCards(cardsData);
       })
       .catch((err) => {
         console.log(err);
@@ -76,16 +76,28 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const handleCardDelete = (card) => {
-    api.deleteCard(card._id).then(() => {
-      // колбек обновляет существующую коллекцию из стейта (коллекция без удаляемой карточки)
-      setCards((cards) => cards.filter((c) => c._id !== card._id));
-    });
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        // колбек обновляет существующую коллекцию из стейта (коллекция без удаляемой карточки)
+        setCards((cards) => cards.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   function handleUpdateUser(userInfo) {
