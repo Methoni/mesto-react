@@ -22,7 +22,8 @@ function PopupWithForm({
         <h2 className="popup__header">{title}</h2>
         <form
           name={`${name}-form`}
-          className={`popup__form popup__form_${name}`} onSubmit={onSubmit}
+          className={`popup__form popup__form_${name}`}
+          onSubmit={onSubmit}
         >
           {children}
           <button
